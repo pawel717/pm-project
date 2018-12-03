@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="@string/home"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_new_training"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="@string/new_training" />
+        <item
+            android:id="@+id/nav_new_progress"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="@string/new_progress" />
+        <item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="@string/statistics" />
+        <item
+            android:id="@+id/nav_training_history"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="@string/training_history" />
+        <item
+            android:id="@+id/nav_progress_history"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="@string/progress_history" />
+    </group>
+
+</menu>

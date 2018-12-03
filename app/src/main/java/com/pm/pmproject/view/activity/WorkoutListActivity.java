@@ -3,6 +3,8 @@ package com.pm.pmproject.view.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.pm.pmproject.R;
+
 public class WorkoutListActivity extends AppCompatActivity {
 
     @Override
