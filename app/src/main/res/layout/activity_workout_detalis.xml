@@ -4,6 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
     tools:context=".view.activity.WorkoutDetalisActivity">
+
+    <TextView
+        android:id="@+id/text_view_workout_type_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/text_view_workout_type"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_workout_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintLeft_toRightOf="@+id/text_view_workout_type_label"
+        app:layout_constraintTop_toTopOf="@+id/text_view_workout_type_label" />
+
+    <TextView
+        android:id="@+id/text_view_training_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/text_view_training_date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_workout_type_label" />
+
+    <TextView
+        android:id="@+id/text_view_training_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintLeft_toRightOf="@+id/text_view_training_date_label"
+        app:layout_constraintTop_toTopOf="@+id/text_view_training_date_label" />
+
+    <TextView
+        android:id="@+id/text_view_training_time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/text_view_training_duration"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_training_date_label" />
+
+    <TextView
+        android:id="@+id/text_view_training_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintLeft_toRightOf="@+id/text_view_training_time_label"
+        app:layout_constraintTop_toTopOf="@+id/text_view_training_time_label" />
 
 </android.support.constraint.ConstraintLayout>
