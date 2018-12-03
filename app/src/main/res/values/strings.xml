@@ -6,4 +6,10 @@
     <string name="text_view_progress_date">Progress date</string>
     <string name="button_start">Start</string>
     <string name="text_view_select_type">Select workout type</string>
+    <string name="new_training">New training</string>
+    <string name="new_progress">New progress</string>
+    <string name="training_history">Training history</string>
+    <string name="progress_history">Progress history</string>
+    <string name="statistics">Statistics</string>
+    <string name="home">Home</string>
 </resources>

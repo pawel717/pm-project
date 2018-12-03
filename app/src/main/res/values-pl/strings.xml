@@ -7,4 +7,10 @@
     <string name="text_view_progress_date">Data postępu</string>
     <string name="button_start">Start</string>
     <string name="text_view_select_type">Wybierz typ treningu</string>
+    <string name="new_training">Nowy trening</string>
+    <string name="new_progress">Nowy postęp</string>
+    <string name="training_history">Historia treningów</string>
+    <string name="progress_history">Historia postępów</string>
+    <string name="statistics">Statystyki</string>
+    <string name="home">Home</string>
 </resources>
