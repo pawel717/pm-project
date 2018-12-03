@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">pmproject</string>
+    <string name="text_view_training_date">Training date</string>
+    <string name="text_view_training_duration">Training duration</string>
+    <string name="text_view_workout_type">Workout type</string>
+    <string name="text_view_progress_date">Progress date</string>
+    <string name="button_start">Start</string>
+    <string name="text_view_select_type">Select workout type</string>
 </resources>
