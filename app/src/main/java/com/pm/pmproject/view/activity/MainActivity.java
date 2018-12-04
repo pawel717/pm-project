@@ -8,6 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import com.pm.pmproject.R;
+import com.pm.pmproject.model.database.DbOpenHelper;
+import com.pm.pmproject.model.entity.DaoMaster;
+import com.pm.pmproject.model.entity.DaoSession;
+
+import org.greenrobot.greendao.query.QueryBuilder;
 
 public class MainActivity extends AppCompatActivity {
     private Button trainingButton;
@@ -32,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentNewTraining);
             }
         });
+
+        // enable logs for debugging purposes
+        QueryBuilder.LOG_SQL = true;
+        QueryBuilder.LOG_VALUES = true;
+
+        DaoSession mDaoSession = new DaoMaster(
+                new DbOpenHelper(getApplicationContext(), "database.db").getWritableDb())
+                .newSession();
+
 
     }
 }
