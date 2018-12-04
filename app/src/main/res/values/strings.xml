@@ -13,4 +13,7 @@
     <string name="statistics">Statistics</string>
     <string name="home">Home</string>
     <string name="button_pause">Pause</string>
+    <string name="button_save">Save</string>
+    <string name="button_add_field">Add field</string>
+    <string name="text_view_burned_calories_label">Burned calories</string>
 </resources>

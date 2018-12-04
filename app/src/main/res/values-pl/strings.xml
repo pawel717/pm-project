@@ -14,4 +14,7 @@
     <string name="statistics">Statystyki</string>
     <string name="home">Home</string>
     <string name="button_pause">Pauza</string>
+    <string name="button_save">Zapisz</string>
+    <string name="button_add_field">Dodaj pole</string>
+    <string name="text_view_burned_calories_label">Spalone kalorie</string>
 </resources>

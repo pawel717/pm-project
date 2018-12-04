@@ -31,7 +31,7 @@ public class Progress {
             sourceProperty = "progressId",
             targetProperty = "attributeId"
     )
-    private List<Attribute> attributes;
+    private List<AttributeProgress> attributes;
 
 /** Used to resolve relations */
 @Generated(hash = 2040040024)
@@ -71,15 +71,15 @@ public void setDate(Date date) {
  * To-many relationship, resolved on first access (and after reset).
  * Changes to to-many relations are not persisted, make changes to the target entity.
  */
-@Generated(hash = 2126436100)
-public List<Attribute> getAttributes() {
+@Generated(hash = 479348143)
+public List<AttributeProgress> getAttributes() {
     if (attributes == null) {
         final DaoSession daoSession = this.daoSession;
         if (daoSession == null) {
             throw new DaoException("Entity is detached from DAO context");
         }
-        AttributeDao targetDao = daoSession.getAttributeDao();
-        List<Attribute> attributesNew = targetDao._queryProgress_Attributes(id);
+        AttributeProgressDao targetDao = daoSession.getAttributeProgressDao();
+        List<AttributeProgress> attributesNew = targetDao._queryProgress_Attributes(id);
         synchronized (this) {
             if (attributes == null) {
                 attributes = attributesNew;

@@ -76,7 +76,7 @@ public class NewWorkoutActivity extends AppCompatActivity {
         Long elapsedTime = SystemClock.elapsedRealtime() - chronometer.getBase();
 
         Intent intentSaveNewTraining = new Intent(getBaseContext(), SaveNewWorkoutActivity.class);
-        // pass data in intent
+        // pass data in intent object
         intentSaveNewTraining.putExtra("elapsedTime", elapsedTime);
         intentSaveNewTraining.putExtra("workoutType", spinnerWorkoutType.getSelectedItem().toString());
 
