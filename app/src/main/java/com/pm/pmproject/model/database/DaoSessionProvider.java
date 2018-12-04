@@ -19,7 +19,7 @@ public class DaoSessionProvider {
 
     private static void createDaoSession(Context appContext){
         DaoSessionProvider.daoSession = new DaoMaster(
-                new DbOpenHelper(appContext, "test.db").getWritableDb())
+                new DbOpenHelper(appContext, "database.db").getWritableDb())
                 .newSession();
     }
 }
