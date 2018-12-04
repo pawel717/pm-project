@@ -13,4 +13,5 @@
     <string name="progress_history">Historia postępów</string>
     <string name="statistics">Statystyki</string>
     <string name="home">Home</string>
+    <string name="button_pause">Pauza</string>
 </resources>

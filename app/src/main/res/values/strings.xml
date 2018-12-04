@@ -12,4 +12,5 @@
     <string name="progress_history">Progress history</string>
     <string name="statistics">Statistics</string>
     <string name="home">Home</string>
+    <string name="button_pause">Pause</string>
 </resources>
