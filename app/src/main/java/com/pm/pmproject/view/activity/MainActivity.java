@@ -11,8 +11,11 @@ import com.pm.pmproject.R;
 import com.pm.pmproject.model.database.DbOpenHelper;
 import com.pm.pmproject.model.entity.DaoMaster;
 import com.pm.pmproject.model.entity.DaoSession;
+import com.pm.pmproject.model.entity.Training;
 
 import org.greenrobot.greendao.query.QueryBuilder;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Button trainingButton;
@@ -45,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         DaoSession mDaoSession = new DaoMaster(
                 new DbOpenHelper(getApplicationContext(), "database.db").getWritableDb())
                 .newSession();
-
 
     }
 }
