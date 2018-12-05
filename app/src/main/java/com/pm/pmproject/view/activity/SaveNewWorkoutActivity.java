@@ -41,6 +41,7 @@ public class SaveNewWorkoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_save_new_workout);
 
         additionalFields = new ArrayList<View>();
+        additionalFields.add(findViewById(R.id.field_burned_calories));
 
         parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
 
@@ -95,6 +96,13 @@ public class SaveNewWorkoutActivity extends AppCompatActivity {
             // get values from view
             EditText nameEditText = (EditText)field.findViewById(R.id.name_edit_text);
             EditText valueEditText = (EditText)field.findViewById(R.id.value_edit_text);
+            String name = nameEditText.getText().toString().trim();
+            String value = valueEditText.getText().toString().trim();
+
+            // dont add attribute if no name or no value provided
+            if(name.isEmpty() || value.isEmpty())
+                continue;
+
             // save attribute
             Attribute attribute = new Attribute();
             attribute.setType(nameEditText.getText().toString());
