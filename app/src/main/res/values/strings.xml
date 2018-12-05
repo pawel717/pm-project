@@ -16,4 +16,5 @@
     <string name="button_save">Save</string>
     <string name="button_add_field">Add field</string>
     <string name="text_view_burned_calories_label">Burned calories</string>
+    <string name="main_menu">Main menu</string>
 </resources>
