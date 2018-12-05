@@ -7,6 +7,7 @@
     tools:context=".view.activity.WorkoutListActivity">
 
     <ListView
+            android:id="@+id/workout_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </android.support.constraint.ConstraintLayout>

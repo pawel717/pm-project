@@ -16,7 +16,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
 
 public class MainActivity extends AppCompatActivity {
     private Button trainingButton;
-
+    private Button workoutList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +35,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentNewTraining = new Intent(getBaseContext(), NewWorkoutActivity.class);
                 startActivity(intentNewTraining);
+            }
+        });
+
+        workoutList = (Button) findViewById(R.id.button_training_history);
+        workoutList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentTrainingHistory = new Intent(getBaseContext(), WorkoutListActivity.class);
+                startActivity(intentTrainingHistory);
             }
         });
 
