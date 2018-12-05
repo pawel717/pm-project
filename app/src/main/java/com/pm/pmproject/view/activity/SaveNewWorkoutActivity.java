@@ -4,13 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pm.pmproject.R;
 import com.pm.pmproject.model.database.DaoSessionProvider;
+import com.pm.pmproject.model.entity.Attribute;
 import com.pm.pmproject.model.entity.AttributeTraining;
 import com.pm.pmproject.model.entity.DaoSession;
 import com.pm.pmproject.model.entity.Training;
@@ -55,12 +58,12 @@ public class SaveNewWorkoutActivity extends AppCompatActivity {
                 .list().get(0);
         training.setType(trainingType);
 
-        TextView textViewTrainingDate = (TextView)(findViewById(R.id.text_view_workout_type));
+        TextView textViewTrainingDate = (TextView)(findViewById(R.id.text_view_training_date));
         trainingDate = Calendar.getInstance().getTime();
         textViewTrainingDate.setText(trainingDate.toString());
         training.setDate(trainingDate);
 
-        TextView textViewDuration = (TextView)(findViewById(R.id.text_view_workout_type));
+        TextView textViewDuration = (TextView)(findViewById(R.id.text_view_training_time));
         Long elapsedTime = intent.getLongExtra("elapsedTime", 0);
         textViewDuration.setText(String.valueOf(elapsedTime));
         training.setDuration(elapsedTime);
@@ -85,5 +88,24 @@ public class SaveNewWorkoutActivity extends AppCompatActivity {
         String workoutType = intent.getStringExtra("workoutType");
 
         // need to save training and attributes to database
+        daoSession.getTrainingDao().save(training);
+
+        // for all added fields
+        for(View field : additionalFields) {
+            // get values from view
+            EditText nameEditText = (EditText)field.findViewById(R.id.name_edit_text);
+            EditText valueEditText = (EditText)field.findViewById(R.id.value_edit_text);
+            // save attribute
+            Attribute attribute = new Attribute();
+            attribute.setType(nameEditText.getText().toString());
+            attribute.setId(daoSession.getAttributeDao().getKey(attribute));
+            daoSession.getAttributeDao().save(attribute);
+            // save attributeTraining
+            AttributeTraining attributeTraining = new AttributeTraining();
+            attributeTraining.setAttributeId(attribute.getId());
+            attributeTraining.setValue(valueEditText.getText().toString());
+            attributeTraining.setTrainingId(training.getId());
+            daoSession.getAttributeTrainingDao().save(attributeTraining);
+        }
     }
 }

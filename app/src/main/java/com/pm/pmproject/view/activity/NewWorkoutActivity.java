@@ -73,7 +73,7 @@ public class NewWorkoutActivity extends AppCompatActivity {
         if(running)
             chronometer.stop();
 
-        Long elapsedTime = SystemClock.elapsedRealtime() - chronometer.getBase();
+        Long elapsedTime = (long) Math.floor((SystemClock.elapsedRealtime() - chronometer.getBase())/1000);
 
         Intent intentSaveNewTraining = new Intent(getBaseContext(), SaveNewWorkoutActivity.class);
         // pass data in intent object
