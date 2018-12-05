@@ -13,13 +13,17 @@ import android.view.View;
 import android.widget.Button;
 import com.pm.pmproject.R;
 import com.pm.pmproject.model.database.DbOpenHelper;
+import com.pm.pmproject.model.entity.Attribute;
+import com.pm.pmproject.model.entity.AttributeTraining;
 import com.pm.pmproject.model.entity.DaoMaster;
 import com.pm.pmproject.model.entity.DaoSession;
 import com.pm.pmproject.model.entity.Training;
+import com.pm.pmproject.model.entity.TrainingType;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.List;
+import java.util.jar.Attributes;
 
 public class MainActivity extends AppCompatActivity {
     private Button trainingButton;
@@ -62,6 +66,5 @@ public class MainActivity extends AppCompatActivity {
         DaoSession mDaoSession = new DaoMaster(
                 new DbOpenHelper(getApplicationContext(), "database.db").getWritableDb())
                 .newSession();
-
     }
 }
