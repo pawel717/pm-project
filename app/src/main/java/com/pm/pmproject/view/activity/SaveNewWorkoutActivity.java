@@ -113,7 +113,12 @@ public class SaveNewWorkoutActivity extends AppCompatActivity {
             attributeTraining.setAttributeId(attribute.getId());
             attributeTraining.setValue(valueEditText.getText().toString());
             attributeTraining.setTrainingId(training.getId());
+
             daoSession.getAttributeTrainingDao().save(attributeTraining);
         }
+
+        // go to workout list activity
+        Intent intentWorkoutList = new Intent(getBaseContext(), WorkoutListActivity.class);
+        startActivity(intentWorkoutList);
     }
 }

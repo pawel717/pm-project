@@ -28,6 +28,8 @@ import java.util.jar.Attributes;
 public class MainActivity extends AppCompatActivity {
     private Button trainingButton;
     private Button workoutList;
+    private Button newProgressButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        newProgressButton = (Button) findViewById(R.id.button_new_progress);
+        newProgressButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentNewProgress = new Intent(getBaseContext(), NewProgressActivity.class);
+                startActivity(intentNewProgress);
+            }
+        });
+
         workoutList = (Button) findViewById(R.id.button_training_history);
         workoutList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,13 +69,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        workoutList = (Button) findViewById(R.id.button_training_history);
+        workoutList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentTrainingHistory = new Intent(getBaseContext(), WorkoutListActivity.class);
+                startActivity(intentTrainingHistory);
+            }
+        });
 
         // enable logs for debugging purposes
         QueryBuilder.LOG_SQL = true;
         QueryBuilder.LOG_VALUES = true;
-
-        DaoSession mDaoSession = new DaoMaster(
-                new DbOpenHelper(getApplicationContext(), "database.db").getWritableDb())
-                .newSession();
     }
 }
