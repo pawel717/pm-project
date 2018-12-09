@@ -15,9 +15,10 @@ public class DbOpenHelper extends DaoMaster.OpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(Database db) {
+        Log.d("DbOpenHelper", "onCreate");
         super.onCreate(db);
-
+        Log.d("DbOpenHelper", "inserting data");
         db.execSQL("INSERT INTO attribute VALUES(1, 'burned_calories')");
         db.execSQL("INSERT INTO attribute VALUES(2, 'chest_circumference')");
         db.execSQL("INSERT INTO attribute VALUES(3, 'biceps_circumference')");
@@ -35,15 +36,9 @@ public class DbOpenHelper extends DaoMaster.OpenHelper {
 
     @Override
     public void onUpgrade(Database db, int oldVersion, int newVersion) {
-        super.onUpgrade(db, oldVersion, newVersion);
+        DaoMaster.dropAllTables(db, true);
+        //super.onUpgrade(db, oldVersion, newVersion);
+        onCreate(db);
         Log.d("DEBUG", "DB_OLD_VERSION : " + oldVersion + ", DB_NEW_VERSION : " + newVersion);
-        switch (newVersion) {
-            case 1:
-                break;
-            case 2:
-                onCreate(db);
-                break;
-                //db.execSQL("ALTER TABLE " + UserDao.TABLENAME + " ADD COLUMN " + UserDao.Properties.Name.columnName + " TEXT DEFAULT 'DEFAULT_VAL'");
-        }
     }
 }

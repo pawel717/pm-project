@@ -22,7 +22,9 @@
         <activity android:name=".view.activity.WorkoutDetalisActivity" />
         <activity android:name=".view.activity.ProgressDetailsActivity" />
         <activity android:name=".view.activity.NewWorkoutActivity" />
-        <activity android:name=".view.activity.SaveNewWorkoutActivity"></activity>
+        <activity android:name=".view.activity.SaveNewWorkoutActivity" />
+        <activity android:name=".view.activity.NewProgressActivity" />
+        <activity android:name=".view.activity.StatisticsActivity"></activity>
     </application>
 
 </manifest>
