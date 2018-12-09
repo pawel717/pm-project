@@ -1,6 +1,8 @@
 package com.pm.pmproject.view.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import com.pm.pmproject.R;
+import com.pm.pmproject.service.NotificationService;
 
 import org.greenrobot.greendao.query.QueryBuilder;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private Button trainingButton;
@@ -17,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Button statisticsButton;
     private Button workoutList;
     private Button progressHistoryButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentProgressHistory);
             }
         });
+
+
 
         // enable logs for debugging purposes
         QueryBuilder.LOG_SQL = true;

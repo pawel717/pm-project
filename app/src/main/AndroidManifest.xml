@@ -25,6 +25,12 @@
         <activity android:name=".view.activity.SaveNewWorkoutActivity" />
         <activity android:name=".view.activity.NewProgressActivity" />
         <activity android:name=".view.activity.StatisticsActivity"></activity>
+
+        <service
+            android:name=".service.NotificationService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":firstservice" />
     </application>
 
 </manifest>

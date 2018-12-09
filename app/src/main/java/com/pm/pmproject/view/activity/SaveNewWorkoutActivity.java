@@ -1,7 +1,9 @@
 package com.pm.pmproject.view.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +21,7 @@ import com.pm.pmproject.model.entity.DaoSession;
 import com.pm.pmproject.model.entity.Training;
 import com.pm.pmproject.model.entity.TrainingType;
 import com.pm.pmproject.model.entity.TrainingTypeDao;
+import com.pm.pmproject.service.NotificationService;
 
 import org.w3c.dom.Text;
 
@@ -34,6 +37,7 @@ public class SaveNewWorkoutActivity extends AppCompatActivity {
     private Training training;
     private Date trainingDate;
     private DaoSession daoSession;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +120,19 @@ public class SaveNewWorkoutActivity extends AppCompatActivity {
 
             daoSession.getAttributeTrainingDao().save(attributeTraining);
         }
+
+        // add last training date to shared preferences
+        preferences = getApplicationContext().getSharedPreferences("pmproject", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor preferencesEditor = preferences.edit();
+        Date now = new Date();
+        preferencesEditor.putLong("lastTrainingDate", now.getTime());
+        preferencesEditor.apply();
+        long lastTrainingDateMilis = preferences.getLong("lastTrainingDate", new Date().getTime());
+        Log.d("asas", String.valueOf(lastTrainingDateMilis));
+        // create notification service
+        Intent intentNotificationService = new Intent(getBaseContext(), NotificationService.class);
+        startService(intentNotificationService);
+
 
         // go to workout list activity
         Intent intentWorkoutList = new Intent(getBaseContext(), WorkoutListActivity.class);
