@@ -25,12 +25,7 @@ public class Progress {
     @NotNull
     private Date date;
 
-    @ToMany
-    @JoinEntity(
-            entity = AttributeProgress.class,
-            sourceProperty = "progressId",
-            targetProperty = "attributeId"
-    )
+    @ToMany(referencedJoinProperty = "progressId")
     private List<AttributeProgress> attributes;
 
 /** Used to resolve relations */

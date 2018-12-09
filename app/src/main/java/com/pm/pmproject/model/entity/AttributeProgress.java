@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.annotation.ToOne;
 
 @Entity(nameInDb = "attribute_progress",
         active = true,
@@ -19,9 +20,10 @@ public class AttributeProgress {
     @Property(nameInDb = "value")
     private String value;
 
-    @Property(nameInDb = "attribute_id")
-    @NotNull
     private Long attributeId;
+
+    @ToOne(joinProperty = "attributeId")
+    private Attribute attribute;
 
     @Property(nameInDb = "progress_id")
     @NotNull
@@ -35,8 +37,11 @@ private transient DaoSession daoSession;
 @Generated(hash = 972456446)
 private transient AttributeProgressDao myDao;
 
-@Generated(hash = 1736744993)
-public AttributeProgress(Long id, String value, @NotNull Long attributeId,
+@Generated(hash = 735162862)
+private transient Long attribute__resolvedKey;
+
+@Generated(hash = 2034524360)
+public AttributeProgress(Long id, String value, Long attributeId,
         @NotNull Long progressId) {
     this.id = id;
     this.value = value;
@@ -114,6 +119,36 @@ public void update() {
         throw new DaoException("Entity is detached from DAO context");
     }
     myDao.update(this);
+}
+
+/** To-one relationship, resolved on first access. */
+@Generated(hash = 1866189090)
+public Attribute getAttribute() {
+    Long __key = this.attributeId;
+    if (attribute__resolvedKey == null
+            || !attribute__resolvedKey.equals(__key)) {
+        final DaoSession daoSession = this.daoSession;
+        if (daoSession == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        AttributeDao targetDao = daoSession.getAttributeDao();
+        Attribute attributeNew = targetDao.load(__key);
+        synchronized (this) {
+            attribute = attributeNew;
+            attribute__resolvedKey = __key;
+        }
+    }
+    return attribute;
+}
+
+/** called by internal mechanisms, do not call yourself. */
+@Generated(hash = 744064319)
+public void setAttribute(Attribute attribute) {
+    synchronized (this) {
+        this.attribute = attribute;
+        attributeId = attribute == null ? null : attribute.getId();
+        attribute__resolvedKey = attributeId;
+    }
 }
 
 /** called by internal mechanisms, do not call yourself. */

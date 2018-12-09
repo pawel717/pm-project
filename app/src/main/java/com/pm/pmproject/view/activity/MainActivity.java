@@ -1,34 +1,22 @@
 package com.pm.pmproject.view.activity;
 
 import android.content.Intent;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import com.pm.pmproject.R;
-import com.pm.pmproject.model.database.DbOpenHelper;
-import com.pm.pmproject.model.entity.Attribute;
-import com.pm.pmproject.model.entity.AttributeTraining;
-import com.pm.pmproject.model.entity.DaoMaster;
-import com.pm.pmproject.model.entity.DaoSession;
-import com.pm.pmproject.model.entity.Training;
-import com.pm.pmproject.model.entity.TrainingType;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
-import java.util.List;
-import java.util.jar.Attributes;
-
 public class MainActivity extends AppCompatActivity {
     private Button trainingButton;
-    private Button workoutList;
     private Button newProgressButton;
+    private Button statisticsButton;
+    private Button workoutList;
+    private Button progressHistoryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        workoutList = (Button) findViewById(R.id.button_training_history);
-        workoutList.setOnClickListener(new View.OnClickListener() {
+        statisticsButton = (Button) findViewById(R.id.button_statistics);
+        statisticsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentTrainingHistory = new Intent(getBaseContext(), WorkoutListActivity.class);
-                startActivity(intentTrainingHistory);
+                Intent intentStatistics = new Intent(getBaseContext(), StatisticsActivity.class);
+                startActivity(intentStatistics);
             }
         });
 
@@ -75,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentTrainingHistory = new Intent(getBaseContext(), WorkoutListActivity.class);
                 startActivity(intentTrainingHistory);
+            }
+        });
+
+        progressHistoryButton = (Button) findViewById(R.id.button_progress_history);
+        progressHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentProgressHistory = new Intent(getBaseContext(), ProgressListActivity.class);
+                startActivity(intentProgressHistory);
             }
         });
 

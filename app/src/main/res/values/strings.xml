@@ -17,4 +17,6 @@
     <string name="button_add_field">Add field</string>
     <string name="text_view_burned_calories_label">Burned calories</string>
     <string name="main_menu">Main menu</string>
+    <string name="field_chest_circumference">Chest circumference</string>
+    <string name="text_view_progress_date_label">Progress date</string>
 </resources>

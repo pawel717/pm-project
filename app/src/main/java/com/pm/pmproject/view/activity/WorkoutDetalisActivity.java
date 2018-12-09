@@ -49,8 +49,8 @@ public class WorkoutDetalisActivity extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView = inflater.inflate(R.layout.field_saved, null);
             // get name and value views
-            TextView nameTextView = (TextView)rowView.findViewById(R.id.name_text_view);
-            TextView valueTextView = (TextView)rowView.findViewById(R.id.value_text_view);
+            TextView nameTextView = (TextView) rowView.findViewById(R.id.name_text_view);
+            TextView valueTextView = (TextView) rowView.findViewById(R.id.value_text_view);
             // populate name and value views
             nameTextView.setText(attributeTraining.getAttribute().getType());
             valueTextView.setText(attributeTraining.getValue());
@@ -71,7 +71,5 @@ public class WorkoutDetalisActivity extends AppCompatActivity {
                 }
             });
         }
-
-
     }
 }
