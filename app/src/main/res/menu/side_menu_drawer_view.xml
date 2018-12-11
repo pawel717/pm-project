@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group>
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/home"
-            android:checked="true"/>
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/home"/>
         <item
             android:id="@+id/nav_new_training"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/new_training" />
+            android:icon="@drawable/ic_add_black_24dp"
+            android:title="@string/new_training"/>
         <item
             android:id="@+id/nav_new_progress"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/new_progress" />
+            android:icon="@drawable/ic_add_black_24dp"
+            android:title="@string/new_progress"/>
         <item
             android:id="@+id/nav_statistics"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/statistics" />
+            android:icon="@drawable/ic_show_chart_black_24dp"
+            android:title="@string/statistics"/>
         <item
             android:id="@+id/nav_training_history"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/training_history" />
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="@string/training_history"/>
         <item
             android:id="@+id/nav_progress_history"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/progress_history" />
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="@string/progress_history"/>
     </group>
 
 </menu>
