@@ -3,13 +3,19 @@ package com.pm.pmproject.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.pm.pmproject.R;
+import com.pm.pmproject.model.database.DaoSessionProvider;
+import com.pm.pmproject.model.entity.DaoSession;
 import com.pm.pmproject.model.entity.Progress;
 import com.pm.pmproject.model.entity.Training;
 
@@ -19,11 +25,14 @@ class AdapterProgress extends ArrayAdapter<Progress> {
 
     private Context context;
     private List<Progress> progressList;
+    private DaoSession daoSession;
+
 
     public AdapterProgress(@NonNull Context context, int resource, @NonNull List<Progress> objects) {
         super(context, resource, objects);
         this.context = context;
         this.progressList = objects;
+        this.daoSession = DaoSessionProvider.getDaoSession(context.getApplicationContext());
     }
 
     @Override
@@ -53,6 +62,41 @@ class AdapterProgress extends ArrayAdapter<Progress> {
                         context.startActivity(intentProgressDetails);
                     }
                 });
+
+        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                View popupView = LayoutInflater.from(parent.getContext()).inflate(R.layout.delete_popup, null);
+
+                Button button_yes = popupView.findViewById(R.id.button_yes);
+                Button button_no = popupView.findViewById(R.id.button_no);
+
+                PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT, true);
+
+                popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+
+                button_no.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         popupWindow.dismiss();
+                     }
+                 });
+
+                button_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick (View v){
+                        daoSession.getProgressDao().delete(progress);
+                        clear();
+                        addAll(daoSession.getProgressDao().loadAll());
+                        notifyDataSetChanged();
+                        popupWindow.dismiss();
+                    }
+                });
+
+                return true;
+            }
+        });
 
         // return the completed view to render on screen
         return convertView;
