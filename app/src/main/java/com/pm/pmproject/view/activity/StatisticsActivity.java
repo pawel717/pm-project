@@ -72,7 +72,7 @@ public class StatisticsActivity extends AppCompatActivity {
             @Override
             public  String getFormattedValue(float value, AxisBase axis) {
 
-                long millis = TimeUnit.HOURS.toMillis((long) value+relativeTime);
+                long millis = (long) value+relativeTime;
                 return mFormat.format(new Date(millis));
             }
         });
