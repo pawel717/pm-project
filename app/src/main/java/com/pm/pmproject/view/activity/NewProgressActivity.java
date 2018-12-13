@@ -18,9 +18,8 @@ import com.pm.pmproject.model.entity.AttributeProgress;
 import com.pm.pmproject.model.entity.AttributeTraining;
 import com.pm.pmproject.model.entity.DaoSession;
 import com.pm.pmproject.model.entity.Progress;
-import com.pm.pmproject.model.entity.Training;
-import com.pm.pmproject.model.entity.TrainingType;
-import com.pm.pmproject.model.entity.TrainingTypeDao;
+import com.pm.pmproject.util.DateFormatted;
+
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -56,7 +55,7 @@ public class NewProgressActivity extends AppCompatActivity {
         addPredefinedField("Body weight", "");
 
         TextView textViewProgressDate = (TextView)(findViewById(R.id.text_view_progress_date));
-        progressDate = Calendar.getInstance().getTime();
+        progressDate = new DateFormatted(Calendar.getInstance().getTime());
         progress.setDate(progressDate);
         textViewProgressDate.setText(progressDate.toString());
     }

@@ -25,4 +25,7 @@
     <string name="delete_label">Delete this item?</string>
     <string name="button_yes">Yes</string>
     <string name="button_no">No</string>
+    <string name="button_delete">Delete</string>
+    <string name="button_ok">Ok</string>
+    <string name="edit">edit</string>
 </resources>

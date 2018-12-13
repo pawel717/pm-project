@@ -16,6 +16,7 @@ import com.pm.pmproject.model.entity.AttributeTraining;
 import com.pm.pmproject.model.entity.DaoSession;
 import com.pm.pmproject.model.entity.Progress;
 import com.pm.pmproject.model.entity.Training;
+import com.pm.pmproject.util.DateFormatted;
 
 public class ProgressDetailsActivity extends AppCompatActivity {
 
@@ -37,7 +38,7 @@ public class ProgressDetailsActivity extends AppCompatActivity {
         progress = daoSession.getProgressDao().load(intent.getLongExtra("progressId", 0));
 
         TextView textViewProgressDate = (TextView)findViewById(R.id.text_view_progress_date);
-        textViewProgressDate.setText(progress.getDate().toString());
+        textViewProgressDate.setText(new DateFormatted(progress.getDate()).toString());
 
         // for all attributes make o view with attribute name and value
         for(AttributeProgress attributeProgress : progress.getAttributes()) {

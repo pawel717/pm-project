@@ -18,6 +18,7 @@ import com.pm.pmproject.R;
 import com.pm.pmproject.model.database.DaoSessionProvider;
 import com.pm.pmproject.model.entity.DaoSession;
 import com.pm.pmproject.model.entity.Training;
+import com.pm.pmproject.util.DateFormatted;
 
 import java.util.List;
 
@@ -49,7 +50,7 @@ class AdapterTraining extends ArrayAdapter<Training> {
         trainingNameTextView.setText(training.getType().getName());
 
         TextView trainingDateTextView = convertView.findViewById(R.id.training_date);
-        trainingDateTextView.setText(training.getDate().toString());
+        trainingDateTextView.setText(new DateFormatted(training.getDate()).toString());
 
         // set onClick listener for training item
         convertView.setOnClickListener(
