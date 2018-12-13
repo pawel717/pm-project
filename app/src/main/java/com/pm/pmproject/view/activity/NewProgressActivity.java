@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.pm.pmproject.R;
 import com.pm.pmproject.model.database.DaoSessionProvider;
 import com.pm.pmproject.model.entity.Attribute;
+import com.pm.pmproject.model.entity.AttributeDao;
 import com.pm.pmproject.model.entity.AttributeProgress;
 import com.pm.pmproject.model.entity.AttributeTraining;
 import com.pm.pmproject.model.entity.DaoSession;
@@ -106,10 +107,14 @@ public class NewProgressActivity extends AppCompatActivity {
                 continue;
 
             // save attribute
-            Attribute attribute = new Attribute();
-            attribute.setType(nameEditText.getText().toString());
-            attribute.setId(daoSession.getAttributeDao().getKey(attribute));
-            daoSession.getAttributeDao().save(attribute);
+            Attribute attribute = daoSession.getAttributeDao().queryBuilder()
+                    .where(AttributeDao.Properties.Type.eq(nameEditText.getText().toString()))
+                    .build().unique();
+            if(attribute == null) {
+                attribute = new Attribute();
+                attribute.setType(nameEditText.getText().toString());
+                daoSession.getAttributeDao().save(attribute);
+            }
             // save attributeTraining
             AttributeProgress attributeProgress = new AttributeProgress();
             attributeProgress.setAttributeId(attribute.getId());

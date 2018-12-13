@@ -25,12 +25,9 @@ import com.pm.pmproject.model.entity.TrainingTypeDao;
 import com.pm.pmproject.service.NotificationService;
 import com.pm.pmproject.util.DateFormatted;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 public class SaveNewWorkoutActivity extends AppCompatActivity {

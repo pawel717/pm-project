@@ -24,8 +24,8 @@
     <string name="delete_label">Usunąć ten obiekt?</string>
     <string name="button_yes">Tak</string>
     <string name="button_no">Nie</string>
-    <string name="button_delete">Delete</string>
+    <string name="button_delete">Usuń</string>
     <string name="button_ok">Ok</string>
-    <string name="edit">edit</string>
+    <string name="edit">Edytuj</string>
 
 </resources>
