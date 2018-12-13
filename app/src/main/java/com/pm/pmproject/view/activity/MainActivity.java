@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             }
         });
 
-        statisticsButton = findViewById(R.id.button_statistics);
+       /* statisticsButton = findViewById(R.id.button_statistics);
         statisticsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 Intent intentProgressHistory = new Intent(getBaseContext(), ProgressListActivity.class);
                 startActivity(intentProgressHistory);
             }
-        });
+        });*/
 
 
 
@@ -106,6 +106,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            case R.id.nav_home:
+                Intent intentHome = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intentHome);
+                break;
             case R.id.nav_new_training:
                 Intent intentNewTraining = new Intent(getBaseContext(), NewWorkoutActivity.class);
                 startActivity(intentNewTraining);

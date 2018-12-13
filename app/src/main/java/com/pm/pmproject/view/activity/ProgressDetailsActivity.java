@@ -2,41 +2,55 @@ package com.pm.pmproject.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.pm.pmproject.R;
 import com.pm.pmproject.model.database.DaoSessionProvider;
-import com.pm.pmproject.model.entity.Attribute;
-import com.pm.pmproject.model.entity.AttributeDao;
-import com.pm.pmproject.model.entity.AttributeProgress;
-import com.pm.pmproject.model.entity.AttributeProgressDao;
-import com.pm.pmproject.model.entity.DaoSession;
-import com.pm.pmproject.model.entity.Progress;
+import com.pm.pmproject.model.entity.*;
 import com.pm.pmproject.util.DateFormatted;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProgressDetailsActivity extends AppCompatActivity {
+public class ProgressDetailsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DaoSession daoSession;
     private Progress progress;
     private LinearLayout parentLinearLayout;
     private List<View> additionalFields;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress_details);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
         additionalFields = new ArrayList<View>();
-        parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
+        parentLinearLayout = findViewById(R.id.parent_linear_layout);
 
         this.daoSession = DaoSessionProvider.getDaoSession(getApplicationContext());
 
@@ -46,7 +60,7 @@ public class ProgressDetailsActivity extends AppCompatActivity {
         progress.refresh();
         progress.resetAttributes();
 
-        TextView textViewProgressDate = (TextView)findViewById(R.id.text_view_progress_date);
+        TextView textViewProgressDate = findViewById(R.id.text_view_progress_date);
         textViewProgressDate.setText(new DateFormatted(progress.getDate()).toString());
 
         // for all attributes make o view with attribute name and value
@@ -55,8 +69,8 @@ public class ProgressDetailsActivity extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView = inflater.inflate(R.layout.field_saved, null);
             // get name and value views
-            TextView nameTextView = (TextView) rowView.findViewById(R.id.name_text_view);
-            TextView valueTextView = (TextView) rowView.findViewById(R.id.value_text_view);
+            TextView nameTextView = rowView.findViewById(R.id.name_text_view);
+            TextView valueTextView = rowView.findViewById(R.id.value_text_view);
             // populate name and value views
             nameTextView.setText(attributeProgress.getAttribute().getType());
             valueTextView.setText(attributeProgress.getValue());
@@ -64,17 +78,17 @@ public class ProgressDetailsActivity extends AppCompatActivity {
             parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount());
         }
 
-        Button buttonEdit = (Button)findViewById(R.id.button_edit);
+        Button buttonEdit = findViewById(R.id.button_edit);
         buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setContentView(R.layout.edit_progress);
-                TextView textViewProgressDate = (TextView)(findViewById(R.id.text_view_progress_date));
+                TextView textViewProgressDate = (findViewById(R.id.text_view_progress_date));
                 textViewProgressDate.setText(progress.getDate().toString());
                 for(AttributeProgress attributeProgress : progress.getAttributes()){
                     View rowView = addField();
-                    EditText nameEditText = (EditText) rowView.findViewById(R.id.name_edit_text);
-                    EditText valueEditText = (EditText) rowView.findViewById(R.id.value_edit_text);
+                    EditText nameEditText = rowView.findViewById(R.id.name_edit_text);
+                    EditText valueEditText = rowView.findViewById(R.id.value_edit_text);
                     nameEditText.setText(attributeProgress.getAttribute().getType());
                     valueEditText.setText(attributeProgress.getValue());
                 }
@@ -82,12 +96,55 @@ public class ProgressDetailsActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_home:
+                Intent intentHome = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intentHome);
+                break;
+            case R.id.nav_new_training:
+                Intent intentNewTraining = new Intent(getBaseContext(), NewWorkoutActivity.class);
+                startActivity(intentNewTraining);
+                break;
+            case R.id.nav_new_progress:
+                Intent intentNewProgress = new Intent(getBaseContext(), NewProgressActivity.class);
+                startActivity(intentNewProgress);
+                break;
+            case R.id.nav_statistics:
+                Intent intentStatistics = new Intent(getBaseContext(), StatisticsActivity.class);
+                startActivity(intentStatistics);
+                break;
+            case R.id.nav_training_history:
+                Intent intentTrainingHistory = new Intent(getBaseContext(), WorkoutListActivity.class);
+                startActivity(intentTrainingHistory);
+                break;
+            case R.id.nav_progress_history:
+                Intent intentProgressHistory = new Intent(getBaseContext(), ProgressListActivity.class);
+                startActivity(intentProgressHistory);
+                break;
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
     public void onAddField(View v) {
         addField();
     }
 
     private View addField() {
-        LinearLayout parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
+        LinearLayout parentLinearLayout = findViewById(R.id.parent_linear_layout);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field, null);
         // Add the new row before the add field button.
@@ -97,8 +154,8 @@ public class ProgressDetailsActivity extends AppCompatActivity {
     }
 
     public void onDelete(View v) {
-        LinearLayout parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
-        additionalFields.remove((View) v.getParent());
+        LinearLayout parentLinearLayout = findViewById(R.id.parent_linear_layout);
+        additionalFields.remove(v.getParent());
         parentLinearLayout.removeView((View) v.getParent());
     }
 
@@ -111,8 +168,8 @@ public class ProgressDetailsActivity extends AppCompatActivity {
         // for all added fields
         for (View field : additionalFields) {
             // get values from view
-            EditText nameEditText = (EditText) field.findViewById(R.id.name_edit_text);
-            EditText valueEditText = (EditText) field.findViewById(R.id.value_edit_text);
+            EditText nameEditText = field.findViewById(R.id.name_edit_text);
+            EditText valueEditText = field.findViewById(R.id.value_edit_text);
             String name = nameEditText.getText().toString().trim();
             String value = valueEditText.getText().toString().trim();
 
