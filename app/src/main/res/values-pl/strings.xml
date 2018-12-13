@@ -21,5 +21,11 @@
     <string name="field_chest_circumference">Chest circumference</string>
     <string name="text_view_progress_date_label">Progress date</string>
     <string name="notification_text">Nie trenowałeś od 7 dni. Zrób to teraz!</string>
+    <string name="delete_label">Usunąć ten obiekt?</string>
+    <string name="button_yes">Tak</string>
+    <string name="button_no">Nie</string>
+    <string name="button_delete">Usuń</string>
+    <string name="button_ok">Ok</string>
+    <string name="edit">Edytuj</string>
 
 </resources>

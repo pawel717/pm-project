@@ -26,7 +26,6 @@ public class NotificationService extends Service{
 
     private TimerTask timerTask;
     private Timer timer;
-    //private SharedPreferences preferences;
 
     @Override
     public void onCreate() {
@@ -41,9 +40,6 @@ public class NotificationService extends Service{
         Log.d("NotificationService", "service started");
 
         super.onStartCommand(intent, flags, startId);
-        // Move process to foreground with just empty notification
-        // It makes that proceess will remain running longer when low memory
-        //startForeground(1, new Notification());
 
         if(timerTask != null)
             timerTask.cancel();
@@ -54,6 +50,7 @@ public class NotificationService extends Service{
             public void run() {
 
                 Log.d("NotificationService", "task run");
+
                 NotificationManager notificationManager = getSystemService(NotificationManager.class);
 
                 Intent ii = new Intent(NotificationService.this.getApplicationContext(), MainActivity.class);
@@ -81,8 +78,6 @@ public class NotificationService extends Service{
                                 .setContentIntent(pendingIntent)
                                 .setChannelId("notify_001");
 
-//                NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-
                 notificationManager.notify(001, notificationBuilder.build());
 
                 stopSelf();
@@ -105,7 +100,7 @@ public class NotificationService extends Service{
         // schedule timer task to fire after triggerDate
         timer.schedule(timerTask, triggerDate);
 
-        // Do not recreate service when it is killed
+        // Recreate service when it is killed
         return START_STICKY;
     }
 

@@ -16,13 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import com.pm.pmproject.R;
-import com.pm.pmproject.service.NotificationService;
 
 import org.greenrobot.greendao.query.QueryBuilder;
-
-import java.text.MessageFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private Button trainingButton;

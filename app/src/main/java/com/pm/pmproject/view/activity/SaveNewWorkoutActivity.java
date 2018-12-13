@@ -16,19 +16,18 @@ import android.widget.TextView;
 import com.pm.pmproject.R;
 import com.pm.pmproject.model.database.DaoSessionProvider;
 import com.pm.pmproject.model.entity.Attribute;
+import com.pm.pmproject.model.entity.AttributeDao;
 import com.pm.pmproject.model.entity.AttributeTraining;
 import com.pm.pmproject.model.entity.DaoSession;
 import com.pm.pmproject.model.entity.Training;
 import com.pm.pmproject.model.entity.TrainingType;
 import com.pm.pmproject.model.entity.TrainingTypeDao;
 import com.pm.pmproject.service.NotificationService;
-
-import org.w3c.dom.Text;
+import com.pm.pmproject.util.DateFormatted;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 public class SaveNewWorkoutActivity extends AppCompatActivity {
@@ -64,7 +63,8 @@ public class SaveNewWorkoutActivity extends AppCompatActivity {
         training.setType(trainingType);
 
         TextView textViewTrainingDate = (TextView)(findViewById(R.id.text_view_training_date));
-        trainingDate = Calendar.getInstance().getTime();
+        trainingDate = new DateFormatted(Calendar.getInstance().getTime());
+
         textViewTrainingDate.setText(trainingDate.toString());
         training.setDate(trainingDate);
 
@@ -108,9 +108,14 @@ public class SaveNewWorkoutActivity extends AppCompatActivity {
                 continue;
 
             // save attribute
-            Attribute attribute = new Attribute();
-            attribute.setType(nameEditText.getText().toString());
-            attribute.setId(daoSession.getAttributeDao().getKey(attribute));
+            Attribute attribute = daoSession.getAttributeDao().queryBuilder()
+                    .where(AttributeDao.Properties.Type.eq(nameEditText.getText().toString()))
+                    .build().unique();
+            if(attribute == null) {
+                attribute = new Attribute();
+                attribute.setType(nameEditText.getText().toString());
+                daoSession.getAttributeDao().save(attribute);
+            }
             daoSession.getAttributeDao().save(attribute);
             // save attributeTraining
             AttributeTraining attributeTraining = new AttributeTraining();
